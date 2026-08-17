@@ -1,0 +1,30 @@
+cat > .gitignore << 'EQF'
+# Java / Spring Boot
+backend/target/
+backend/.mvn/
+*.class
+*.jar
+
+# Python / FastApi
+ml-service/venv/
+ml-service/__pycache__/
+ml-service/*.__pyc
+ml.service/.pytest_cache/
+
+# React / Node
+frontend/node_modules/
+frontend/.env
+
+# IDE
+.vscode/
+.idea/
+*.iml
+
+# OS
+.DS_Store
+
+# Secrets
+.env
+*.env.local
+application-secrets.yml
+EOF
