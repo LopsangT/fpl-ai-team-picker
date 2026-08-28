@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/fpl_ai
+    username: ${DB_USERNAME:lopsang}
+    password: ${DB_PASSWORD:}
+  jpa:
+    open-in-view: false
+    hibernate:
+      # Checks whether entities match the schema without altering it which is safer than
+      # 'update', which can make unwanted schema changes.
+      ddl-auto: validate
+    show-sql: true         
+    properties:
+      hibernate:
+        format_sql: true  
