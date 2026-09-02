@@ -13,8 +13,7 @@ public class Fixture {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-
-  private Long id;
+  private Integer id;
 
   @Column(nullable = false, length = 9)
   private String season;
