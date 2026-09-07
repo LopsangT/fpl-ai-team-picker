@@ -1,6 +1,10 @@
 package com.fplai.backend;
 
+import com.fplai.backend.repository.PlayerRepository;
+import com.fplai.backend.repository.TeamRepository;
 import com.fplai.backend.service.FplApiClient;
+import com.fplai.backend.service.FplDataSyncService;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -15,12 +19,13 @@ public class BackendApplication {
 
   // just for testing, once FplApiClient works this will be removed
 	@Bean
-  CommandLineRunner testFplFetch(FplApiClient fplApiClient) {
+  CommandLineRunner testSync(FplDataSyncService syncService,
+                              TeamRepository teamRepository,
+                              PlayerRepository playerRepository) {
     return args -> {
-      var data = fplApiClient.fetchBootstrapData();
-      System.out.println("Fetched " + data.getTeams().size() + " teams");
-      System.out.println("Fetched " + data.getElements().size() + " players");
-      System.out.println("First team: " + data.getTeams().get(0).getName());
+      syncService.syncTeamsAndPlayers();
+      System.out.println("Teams in DB: " + teamRepository.count());
+      System.out.println("Players in DB: " + playerRepository.count());
     };
-	}
+  }
 }
