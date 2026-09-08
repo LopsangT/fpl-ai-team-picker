@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 @Table(name = "teams")
 @Data
 @NoArgsConstructor
-
 public class Team {
 
   @Id
@@ -24,6 +23,8 @@ public class Team {
   private Integer strengthOverallHome;
 
   @Column(name = "strength_overall_away")
-  private Integer sttrengthOverallAway;
+  private Integer strengthOverallAway;
 }
+
+
 

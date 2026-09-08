@@ -1,6 +1,9 @@
 package com.fplai.backend.service;
 
+
 import com.fplai.backend.dto.fpl.FplBootstrapResponse;
+import com.fplai.backend.dto.fpl.FplFixtureDto;
+
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
 
@@ -18,5 +21,12 @@ public class FplApiClient {
       .uri("/bootstrap-static/")
       .retrieve()
       .body(FplBootstrapResponse.class);
+  }
+
+  public java.util.List<FplFixtureDto> fetchFixtures() {
+    return fplRestClient.get()
+      .uri("/fixtures/")
+      .retrieve()
+      .body(new org.springframework.core.ParameterizedTypeReference<java.util.List<FplFixtureDto>>() {});
   }
 }
