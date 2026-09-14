@@ -1,15 +1,16 @@
-cat > .gitignore << 'EQF'
 # Java / Spring Boot
 backend/target/
 backend/.mvn/
 *.class
 *.jar
 
-# Python / FastApi
-ml-service/venv/
+# Python / FastAPI
 ml-service/__pycache__/
-ml-service/*.__pyc
-ml.service/.pytest_cache/
+ml-service/*.pyc
+ml-service/.pytest_cache/
+
+# Raw downloaded datasets - regenerate via ml-service/data/download_historical_data.py
+ml-service/data/*/
 
 # React / Node
 frontend/node_modules/
@@ -27,4 +28,3 @@ frontend/.env
 .env
 *.env.local
 application-secrets.yml
-EOF
