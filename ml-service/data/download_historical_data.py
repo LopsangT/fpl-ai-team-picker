@@ -25,3 +25,12 @@ df.to_csv(output_path, index=False)
 print(f"Saved {len(df)} rows to {output_path}")
 print(f"Columns: {list(df.columns)}")
 
+# Also grab team strength data for this season, used to build a
+# fixture-difficulty feature (a proxy for FPL's own difficulty rating)
+teams_url = f"{BASE_URL}/teams.csv"
+print(f"Downloading {teams_url}...")
+teams_df = pd.read_csv(teams_url, encoding="utf-8-sig")
+teams_output_path = os.path.join(OUTPUT_DIR, "teams.csv")
+teams_df.to_csv(teams_output_path, index=False)
+print(f"Saved {len(teams_df)} rows to {teams_output_path}")
+print(f"Team columns: {list(teams_df.columns)}")
