@@ -63,3 +63,10 @@ importances = sorted(
 )
 for feature, importance in importances:
     print(f"  {feature}: {importance:.3f}")
+
+import joblib
+
+# Persist the trained model to disk so the FastAPI service can load it
+# without retraining
+joblib.dump(model, "ml-service/model.pkl")
+print("\nModel saved to ml-service/model.pkl")
