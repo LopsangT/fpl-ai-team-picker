@@ -41,8 +41,8 @@ def predict(request: PredictionRequest):
 		"position_GK": 1 if request.position == "GK" else 0,
 		"position_MID": 1 if request.position == "MID" else 0,
 	}
-
+	
 	X = pd.DataFrame([row])[FEATURE_COLUMNS]
 	prediction = model.predict(X)[0]
-
 	return PredictionResponse(predicted_points=round(float(prediction), 2))
+
