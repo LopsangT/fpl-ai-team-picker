@@ -16,4 +16,11 @@ public class RestClientConfig {
       .baseUrl("https://fantasy.premierleague.com/api")
       .build();
   }
+
+  @Bean
+  public RestClient mlRestClient() {
+    return RestClient.builder()
+      .baseUrl("http://localhost:8000")
+      .build();
+  }
 }
