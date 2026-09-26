@@ -2,6 +2,7 @@ package com.fplai.backend.service;
 
 import com.fplai.backend.dto.fpl.FplBootstrapResponse;
 import com.fplai.backend.dto.fpl.FplFixtureDto;
+import com.fplai.backend.dto.fpl.FplLiveResponse;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
@@ -27,5 +28,12 @@ public class FplApiClient {
       .uri("/fixtures/")
       .retrieve()
       .body(new org.springframework.core.ParameterizedTypeReference<java.util.List<FplFixtureDto>>() {});
+  }
+
+  public FplLiveResponse fetchGameweekLive(int gameweek) {
+    return fplRestClient.get()
+      .uri("/event/{gameweek}/live/", gameweek)
+      .retrieve()
+      .body(FplLiveResponse.class);
   }
 }
