@@ -46,7 +46,7 @@ public class PlayerGameweekStats {
   // for predicting totalPoints for this same gameweek, they are components of that
   // outcome, so using them directly would leak the answer into training
   @Column(name = "goals_scored", nullable = false)
-  private Integer goalScored = 0;
+  private Integer goalsScored = 0;
 
   @Column(nullable = false)
   private Integer assists = 0;

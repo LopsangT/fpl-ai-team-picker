@@ -16,10 +16,10 @@ public class FplLiveStatsDto {
   @JsonProperty("goals_conceded")
   private Integer goalsConceded;
 
-  @JsonProperty("clean_Sheets")
+  @JsonProperty("clean_sheets")
   private Integer cleanSheets;
 
-  @JsonProperty("totalPoints")
+  @JsonProperty("total_points")
   private Integer totalPoints;
 
   public Integer getMinutes() { return minutes; }

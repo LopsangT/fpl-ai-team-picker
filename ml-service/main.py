@@ -38,7 +38,7 @@ def predict(request: PredictionRequest):
 		"form_before_gameweek": request.form_before_gameweek,
 		"opponent_difficulty": request.opponent_difficulty,
 		"position_FWD": 1 if request.position == "FWD" else 0,
-		"position_GK": 1 if request.position == "GK" else 0,
+		"position_GK": 1 if request.position in ("GK", "GKP") else 0,
 		"position_MID": 1 if request.position == "MID" else 0,
 	}
 	
