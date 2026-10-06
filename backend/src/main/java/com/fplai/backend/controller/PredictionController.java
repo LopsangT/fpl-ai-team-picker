@@ -1,9 +1,18 @@
 package com.fplai.backend.controller;
 
+import com.fplai.backend.dto.ml.BatchPredictionRequestDto;
 import com.fplai.backend.dto.ml.PredictionRequestDto;
 import com.fplai.backend.dto.ml.PredictionResponseDto;
 import com.fplai.backend.service.PlayerFeatureService;
 import com.fplai.backend.service.PredictionService;
+import com.fplai.backend.dto.ml.BatchPredictionRequestDto;
+import com.fplai.backend.dto.ml.BatchPredictionResponseDto;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -43,4 +52,24 @@ public class PredictionController {
         PredictionRequestDto features = playerFeatureService.buildFeatures(playerId, gameweek);
         return predictionService.getPrediction(features);
     }
+
+    @GetMapping("batch-test/gameweek/{gameweek}")
+    public Map<Integer, Double> batchTest(@PathVariable int gameweek) {
+        Map<Integer, PredictionRequestDto> featuresByPlayerId = 
+            playerFeatureService.buildFeaturesForAllPlayers(gameweek);
+
+        List<Integer> playerIds = new ArrayList<>(featuresByPlayerId.keySet());
+        List<PredictionRequestDto> features = playerIds.stream()  
+            .map(featuresByPlayerId::get)
+            .toList();
+        
+        BatchPredictionResponseDto response = 
+            predictionService.getBatchPredictions(new BatchPredictionRequestDto(features));
+        
+        Map<Integer, Double> predictionsByPlayerId = new HashMap<>();
+        for (int i = 0; i < playerIds.size(); i++) {
+            predictionsByPlayerId.put(playerIds.get(i), response.getPredictions().get(i));
+        }
+        return predictionsByPlayerId;
+    }   
 }

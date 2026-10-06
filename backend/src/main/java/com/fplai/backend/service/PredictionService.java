@@ -1,7 +1,10 @@
 package com.fplai.backend.service;
 
+import com.fplai.backend.dto.ml.BatchPredictionRequestDto;
 import com.fplai.backend.dto.ml.PredictionRequestDto;
 import com.fplai.backend.dto.ml.PredictionResponseDto;
+import com.fplai.backend.dto.ml.BatchPredictionResponseDto;
+
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
@@ -12,14 +15,22 @@ public class PredictionService {
     private final RestClient mlRestClient;
 
     public PredictionService(@Qualifier("mlRestClient") RestClient mlRestClient) {
-      this.mlRestClient = mlRestClient;
+        this.mlRestClient = mlRestClient;
     }
 
     public PredictionResponseDto getPrediction(PredictionRequestDto request) {
-      return mlRestClient.post()
-        .uri("/predict")
-        .body(request)
-        .retrieve()
-        .body(PredictionResponseDto.class);
+        return mlRestClient.post()
+            .uri("/predict")
+            .body(request)
+            .retrieve()
+            .body(PredictionResponseDto.class);
+    }
+
+    public BatchPredictionResponseDto getBatchPredictions(BatchPredictionRequestDto request) {
+    return mlRestClient.post()
+            .uri("/predict/batch")
+            .body(request)
+            .retrieve()
+            .body(BatchPredictionResponseDto.class);
     }
 }

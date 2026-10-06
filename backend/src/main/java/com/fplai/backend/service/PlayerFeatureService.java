@@ -9,6 +9,8 @@ import com.fplai.backend.repository.PlayerGameweekStatsRepository;
 import com.fplai.backend.repository.PlayerRepository;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 import com.fplai.backend.entity.Team;
 import com.fplai.backend.repository.TeamRepository;
 import static com.fplai.backend.config.SeasonConfig.CURRENT_SEASON;
@@ -78,5 +80,24 @@ public class PlayerFeatureService {
 
         return new PredictionRequestDto(
             wasHome, expectedMinutes, formBeforeGameweek, opponentDifficulty, player.getPosition());
+    }
+
+    /**
+     * For each gameweek builds prediction features for every player.
+     * Players whose team has no fixture that gameweek are skipped rather than 
+     * causing a failure, since this method is usedto score the full player pool for the team optimiser.
+     */
+    public Map<Integer, PredictionRequestDto> buildFeaturesForAllPlayers(int gameweek) {
+        List<Player> allPlayers = playerRepository.findAll();
+        Map<Integer, PredictionRequestDto> featuresByPlayerId = new HashMap<>();
+
+        for (Player player : allPlayers) {
+            try {
+                PredictionRequestDto features = buildFeatures(player.getId(), gameweek);
+                featuresByPlayerId.put(player.getId(), features);
+            } catch (IllegalStateException e) {
+            }
+        }
+        return featuresByPlayerId;
     }
 }
