@@ -28,6 +28,9 @@ public class FplPlayerDto {
   @JsonProperty("chance_of_playing_this_round")
   private Integer chanceOfPlayingThisRound;
 
+  @JsonProperty("code")
+  private Integer code;
+
   private String news;
 
   public Integer getId() { return id; }
@@ -48,5 +51,7 @@ public class FplPlayerDto {
   public void setChanceOfPlayingThisRound(Integer v) { this.chanceOfPlayingThisRound = v; }
   public String getNews() { return news; }
   public void setNews(String news) { this.news = news; }
+  public Integer getCode() { return code; }
+  public void setCode(Integer code) { this.code = code; }
 
 }

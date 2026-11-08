@@ -83,6 +83,7 @@ public class FplDataSyncService {
       player.setStatus(dto.getStatus());
       player.setChanceOfPlayingThisRound(dto.getChanceOfPlayingThisRound());
       player.setNews(dto.getNews());
+      player.setCode(dto.getCode());
 
       playerRepository.save(player);
     }

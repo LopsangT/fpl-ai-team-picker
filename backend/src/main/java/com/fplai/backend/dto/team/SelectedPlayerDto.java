@@ -7,16 +7,18 @@ public class SelectedPlayerDto {
     private Integer teamId;
     private Integer cost;
     private Double predictedPoints;
+    private Integer code;
 
     public SelectedPlayerDto() {}
 
-    public SelectedPlayerDto(Integer playerId, String name, String position, Integer teamId, Integer cost, Double predictedPoints) {
+    public SelectedPlayerDto(Integer playerId, String name, String position, Integer teamId, Integer cost, Double predictedPoints, Integer code) {
         this.playerId = playerId;
         this.name = name;
         this.position = position;
         this.teamId = teamId;
         this.cost = cost;
         this.predictedPoints = predictedPoints;
+        this.code = code;
     }
 
     public Integer getPlayerId() { return playerId; }
@@ -31,4 +33,6 @@ public class SelectedPlayerDto {
     public void setCost(Integer cost) { this.cost = cost; }
     public Double getPredictedPoints() { return predictedPoints; }
     public void setPredictedPoints(Double predictedPoints) { this.predictedPoints = predictedPoints; }
+    public Integer getCode() { return code; }
+    public void setCode(Integer code) { this.code = code; }
 }

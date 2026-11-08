@@ -39,4 +39,7 @@ public class Player {
 
   @Column(columnDefinition = "TEXT")
   private String news;
+
+  @Column(name = "code")
+  private Integer code;
 }

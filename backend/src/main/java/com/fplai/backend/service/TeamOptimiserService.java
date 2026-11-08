@@ -102,7 +102,8 @@ public class TeamOptimiserService {
                         candidate.getPosition(),
                         clubId,
                         cost,
-                        predictedPointsByPlayerId.getOrDefault(candidate.getId(), 0.0)
+                        predictedPointsByPlayerId.getOrDefault(candidate.getId(), 0.0),
+                        candidate.getCode()
                 ));
 
                 clubCounts.put(clubId, currentClubCount + 1);
