@@ -1,0 +1,11 @@
+@import "tailwindcss";
+
+@theme {
+  --color-pitch-green: #0F3D2E;
+  --color-pitch-stripe: #1B5E3F;
+  --color-shell-purple: #1A1534;
+  --color-shell-indigo: #3D2B7A;
+  --color-points-gold: #F4C430;
+  --color-card-bg: #FAFAF8;
+  --color-muted: #6B7280;
+}
